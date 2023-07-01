@@ -6,7 +6,6 @@ const cors = require("cors");
 app.use(cors());
 
 const isProduction = process.env.NODE_ENV === "production";
-console.log(isProduction);
 
 const bcrypt = require("bcrypt"); //For password encryption
 
@@ -31,7 +30,9 @@ app.listen(3000, () => {
 //MongoDB connection
 
 const mongoose = require("mongoose");
-const mongoUrl = process.env.DATABASE_URL;
+const mongoUrl = isProduction
+  ? process.env.DATABASE_URL
+  : "mongodb://0.0.0.0:27017/";
 
 mongoose
   .connect(mongoUrl, {
