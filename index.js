@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 app.use(express.json());
@@ -7,7 +8,7 @@ app.use(cors());
 const bcrypt = require("bcrypt"); //For password encryption
 
 const jwt = require("jsonwebtoken");
-const JWT_secret = "b6e8b3f89c7d4f2a9d51e8b7af6c3d0e";
+const JWT_secret = process.env.JWT_SECRET;
 
 app.set("view engine", "ejs"); //For representing node UI
 
@@ -27,8 +28,7 @@ app.listen(3000, () => {
 //MongoDB connection
 
 const mongoose = require("mongoose");
-const mongoUrl =
-  "mongodb+srv://Sainath:Sainath123@assessment.rmawekc.mongodb.net/?retryWrites=true&w=majority";
+const mongoUrl = process.env.DATABASE_URL;
 
 mongoose
   .connect(mongoUrl, {
@@ -137,8 +137,8 @@ app.post("/forgotPassword", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "pspatilsai64@gmail.com",
-        pass: "wfxoyorfqxmlnofv",
+        user: process.env.NODEMAILER_USER,
+        pass: process.env.NODEMAILER_PASS,
       },
     });
 
