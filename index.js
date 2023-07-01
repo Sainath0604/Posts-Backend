@@ -5,6 +5,9 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
+const isProduction = process.env.NODE_ENV === "production";
+console.log(isProduction);
+
 const bcrypt = require("bcrypt"); //For password encryption
 
 const jwt = require("jsonwebtoken");
