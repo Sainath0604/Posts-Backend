@@ -135,7 +135,11 @@ app.post("/forgotPassword", async (req, res) => {
     });
     //
 
-    const link = `http://localhost:3000/resetPassword/${oldUser._id}/${token}`;
+    const resetPassUrl = isProduction
+      ? process.env.RESET_PASS_URL
+      : "http://localhost:3000";
+
+    const link = `${resetPassUrl}/resetPassword/${oldUser._id}/${token}`;
     console.log(link);
 
     const transporter = nodemailer.createTransport({
