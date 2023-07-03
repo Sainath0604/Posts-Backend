@@ -53,15 +53,18 @@
       }
     </style>
     <script>
+      const prod = "<%= process.env.NODE_ENV %>";
+      const isProduction = prod === "production";
+
       var status = `<%- JSON.stringify(status) %>`;
-      var clientUrl = "<%= process.env.FRONTEND_URL %>";
+      const clientUrl = "<%= process.env.FRONTEND_URL %>";
 
       const goBackHomeUrl = isProduction ? clientUrl : "http://localhost:5173";
       const link = `${goBackHomeUrl}/signIn`;
 
       if (JSON.parse(status) == "verifiedWithUpdatedPass") {
         if (confirm("Do you want to login ?")) {
-          window.location.href = `http://localhost:5173/signIn`;
+          window.location.href = link;
         }
       }
 
