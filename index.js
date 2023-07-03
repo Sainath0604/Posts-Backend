@@ -136,7 +136,7 @@ app.post("/forgotPassword", async (req, res) => {
     //
 
     const resetPassUrl = isProduction
-      ? process.env.FRONTEND_URL
+      ? process.env.BACKEND_URL
       : "http://localhost:3000";
 
     const link = `${resetPassUrl}/resetPassword/${oldUser._id}/${token}`;
