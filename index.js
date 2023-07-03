@@ -13,7 +13,7 @@ const jwt = require("jsonwebtoken");
 const JWT_secret = process.env.JWT_SECRET;
 
 app.set("view engine", "ejs"); //For representing node UI
-app.set("views", __dirname + "/views");
+
 app.use(express.urlencoded({ extended: false }));
 
 const nodemailer = require("nodemailer");
