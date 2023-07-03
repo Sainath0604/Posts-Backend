@@ -13,7 +13,7 @@ const jwt = require("jsonwebtoken");
 const JWT_secret = process.env.JWT_SECRET;
 
 app.set("view engine", "ejs"); //For representing node UI
-
+app.set("views", __dirname + "/views");
 app.use(express.urlencoded({ extended: false }));
 
 const nodemailer = require("nodemailer");
@@ -136,7 +136,7 @@ app.post("/forgotPassword", async (req, res) => {
     //
 
     const resetPassUrl = isProduction
-      ? process.env.RESET_PASS_URL
+      ? process.env.FRONTEND_URL
       : "http://localhost:3000";
 
     const link = `${resetPassUrl}/resetPassword/${oldUser._id}/${token}`;
